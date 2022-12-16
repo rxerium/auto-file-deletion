@@ -1,12 +1,13 @@
-import os 
+import os
+import shutil
 
-# Set your downloads file path here
-file_path = '/users/rishi/Downloads/'
+downloads_folder = '/Users/rishi/Downloads'
 
-print(file_path)
+files = os.listdir(downloads_folder)
 
-if os.path.isfile(file_path):
-    os.remove(file_path)
-    print("All files in the Downloads folder have successfully been deleted!")
-else:
-    print("Something went wrong!")
+for file in files:
+    file_path = os.path.join(downloads_folder, file)
+    if os.path.isdir(file_path):
+        shutil.rmtree(file_path)
+    else:
+        os.remove(file_path)
